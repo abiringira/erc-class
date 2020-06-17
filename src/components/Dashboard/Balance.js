@@ -1,4 +1,4 @@
-import React, {  useEffect,useState} from 'react'
+import React, {  useEffect,useState} from 'react';
 import PropTypes from "prop-types";
 import { Col } from "shards-react";
 import SmallStats from "../common/SmallStats";

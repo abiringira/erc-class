@@ -48,7 +48,6 @@ class Editor extends Component {
   }
 
   textAreaHandleChange = (event) => {
-
     this.setState({ textMessage: event.target.value });
 
   }
