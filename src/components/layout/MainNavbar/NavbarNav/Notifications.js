@@ -67,7 +67,7 @@ export default class Notifications extends React.Component {
             </div>
           </DropdownItem>
           <DropdownItem className="notification__all text-center">
-            View all Notifications
+            View All Courses
           </DropdownItem>
         </Collapse>
       </NavItem>

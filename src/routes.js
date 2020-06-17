@@ -6,11 +6,11 @@ import { DefaultLayout } from "./layouts";
 
 // Route Views
 import Dashboard from "./views/Dashboard";
-import Application from "./views/Application";
-import SendNewNotification from "./views/SendNewNotification";
+import Users from "./views/Users";
+import Participants from "./views/Participants";
 import Errors from "./views/Errors";
 import ResendNotification from "./views/ResendNotification";
-import Notifications from "./views/Notifications";
+import Courses from "./views/Courses";
 import login from "./views/Login";
 
 export default [
@@ -31,14 +31,14 @@ export default [
     component: Dashboard
   },
   {
-    path: "/Application",
+    path: "/users",
     layout: DefaultLayout,
-    component: Application
+    component: Users
   },
   {
-    path: "/send-new-notification",
+    path: "/participants",
     layout: DefaultLayout,
-    component: SendNewNotification
+    component: Participants
   },
   {
     path: "/errors",
@@ -51,9 +51,9 @@ export default [
     component: ResendNotification
   },
   {
-    path: "/notifications",
+    path: "/courses",
     layout: DefaultLayout,
-    component: Notifications
+    component: Courses
   },
   
 ];

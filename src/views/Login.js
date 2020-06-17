@@ -38,7 +38,7 @@ function loginPage() {
 
 		<input className="input1" type="email" placeholder="Email" />
 			<input class="input1" type="password" placeholder="Password" />
- 			<a href="hhtp/social">Forgot your password?</a>
+ 			{/* <a href="hhtp/social">Forgot your password?</a> */}
  			<button class="button1" ><a className="a1" href="/dashboard">Sign In </a></button> 
  		</form>
  	</div>
@@ -60,7 +60,7 @@ function loginPage() {
 			<input class="input1" type="number" placeholder="Phone" />
 			<input className="input1" type="text" placeholder="username" />
 			<input class="input1" type="password" placeholder="Password" />
- 			<button class="button1" ><a className="a1" href="/dashboard">Sign Up </a></button> 
+ 			<button class="button1" ><a className="a1" href="/dashboard">Sign up </a></button> 
  		</form>
  	</div>
 

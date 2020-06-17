@@ -18,7 +18,7 @@ const Dashboard = ({ smallStats }) => {
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle title="Notification Overview" subtitle="Dashboard" className="text-sm-left mb-3" />
+      <PageTitle title="Course Overview" subtitle="Dashboard" className="text-sm-left mb-3" />
     </Row>
 
     {/* Small Stats Blocks */}
@@ -37,11 +37,11 @@ const Dashboard = ({ smallStats }) => {
       <Col lg="8" md="12" sm="12" className="mb-4">
         <UsersOverview />
       </Col>
-
-      {/* Notification by Application */}
+{/* 
+      Notification by Application
       <Col lg="4" md="6" sm="12" className="mb-4">
         <UsersByDevice />
-      </Col>
+      </Col> */}
 
      
 
@@ -65,7 +65,7 @@ Dashboard.defaultProps  = {
   smallStats: [
     
     {
-      label: "SENT",
+      label: "Courses",
       value: !Dashboard.notifications ? 0 : Dashboard.notifications.length ,
       percentage: "12.4",
       increase: true,
@@ -83,7 +83,7 @@ Dashboard.defaultProps  = {
       ]
     },
     {
-      label: "FAILED",
+      label: "Participants",
       value: !Dashboard.notifications ? 0 : Dashboard.notifications.length ,
       percentage: "3.8%",
       increase: false,
@@ -102,7 +102,7 @@ Dashboard.defaultProps  = {
       ]
     },
     {
-      label: "PENDING",
+      label: "Users",
       value: "29",
       percentage: "2.71%",
       increase: false,

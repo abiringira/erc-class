@@ -1,14 +1,16 @@
 import React,{Component} from "react";
+
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
+
 import PageTitle from "../components/common/PageTitle";
-import NavbarSearch from '../components/layout/MainNavbar/NavbarSearch.js';
+import Editor from "../components/send-new-notification/Editor";
 
 
+class SendNewNotification extends Component   {
 
-class  Notifications extends Component {
-
+  
   state = {
     notifications: []
   }
@@ -48,31 +50,33 @@ class  Notifications extends Component {
   }))
    
 
+  
+ 
+
+
+
 
   render() {
 
-  return(
+    return(
 
- 
+  
 
-  <Container fluid className="main-content-container px-4">
+  <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="All Notifications" subtitle="SMS SERVICE" className="text-sm-left" />
-      <Col lg="4" md="6" sm="12" className="mb-4">
-         <NavbarSearch/>
-      </Col>
+      <PageTitle sm="4" title="All Participants" subtitle="BCC CLASS" className="text-sm-left" />
     </Row>
 
-    {/* Default Light Table */}
     <Row>
-      <Col>
+      {/* Editor */}
+      <Col lg="9" md="12">
+        {/* <Editor /> */}
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6 className="m-0">All Notifications</h6>
+            <h6 className="m-0">Participants</h6>
           </CardHeader>
-          
-          <CardBody className="p-0 pb-3">
+        <CardBody className="p-0 pb-3">
  
            
           <BootstrapTable   data={this.state.notifications} pagination options ={{sizePerPage: 5}}>
@@ -87,22 +91,15 @@ class  Notifications extends Component {
      
           
           </CardBody>
-          
-             
-          
-        </Card>
-        
-  
-
-
+          </Card>
       </Col>
+
+     
     </Row>
-  
-
-   
   </Container>
- )
+    )
 }
- } ;
 
-export default Notifications;
+};
+
+export default SendNewNotification;

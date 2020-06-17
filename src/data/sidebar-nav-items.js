@@ -1,20 +1,20 @@
 export default function() {
   return [
     {
-      title: "Notification Dashboard",
+      title: "Dashboard",
       to: "/dashboard",
       htmlBefore: '<i class="material-icons">edit</i>',
       htmlAfter: ""
     },
     {
-      title: "Notifications",
+      title: "Courses",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/notifications",
+      to: "/courses",
     },
     {
-      title: "Send Notification",
+      title: "Participants",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/send-new-notification",
+      to: "/participants",
     },
    
     // {
@@ -24,9 +24,9 @@ export default function() {
     // },
     
     {
-      title: "Application",
+      title: "Users",
       htmlBefore: '<i class="material-icons">person</i>',
-      to: "/Application",
+      to: "/users",
     },
 
     {

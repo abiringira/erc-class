@@ -39,7 +39,7 @@ MainFooter.propTypes = {
 
 MainFooter.defaultProps = {
   contained: false,
-  copyright: "Copyright © 2020 Ikofi Squad",
+  copyright: "Copyright © 2020 BCC",
   menuItems: [
    
   ]

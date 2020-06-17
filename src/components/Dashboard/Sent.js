@@ -67,7 +67,7 @@ Dashboard.defaultProps  = {
   smallStats: [
     
     {
-      label: "SENT NOTIFICATION",
+      label: "Participants",
       value: !Dashboard.notifications ? 0 : Dashboard.notifications.length ,
       percentage: "12.4",
       increase: true,

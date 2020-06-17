@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 import PageTitle from "../components/common/PageTitle";
-import NavbarSearch from '../components/layout/MainNavbar/NavbarSearch.js';
+
 
 
 
@@ -36,11 +36,11 @@ class  Notifications extends Component {
 
   getNotificationData = (data) => 
   ( data ||[]).map((list) => ({ 
-    id: list._id,
-    name : list.name, 
-    app: list.senderId,
-    registrationTime: list.createdAt
-    
+    id: list._id, 
+    app: list.name,
+    senderId: list.senderId,
+    registrationTime: list.createdAt,
+     
   }))
    
 
@@ -54,7 +54,7 @@ class  Notifications extends Component {
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="All Courses" subtitle="BCC CLASS" className="text-sm-left" />
+      <PageTitle sm="4" title="All Users" subtitle="BCC CLASS" className="text-sm-left" />
     </Row>
 
     {/* Default Light Table */}
@@ -62,19 +62,18 @@ class  Notifications extends Component {
       <Col>
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6 className="m-0">All Courses</h6>
+            <h6 className="m-0">Users</h6>
           </CardHeader>
           
           <CardBody className="p-0 pb-3">
  
            
-          <BootstrapTable  data={this.state.notifications} pagination options ={{sizePerPage: 5}}>
+          <BootstrapTable  data={this.state.notifications} key={this.state.notifications._id} isKey={true} pagination options ={{sizePerPage: 5}}>
+      <TableHeaderColumn isKey dataField='id' hidden={true} >Application ID</TableHeaderColumn>
+      <TableHeaderColumn dataField='app'>App</TableHeaderColumn>
+      <TableHeaderColumn dataField='senderId' >Sender id</TableHeaderColumn>
+      <TableHeaderColumn dataField='registrationTime'>Registration Time</TableHeaderColumn>
 
-      <TableHeaderColumn dataField='name'> Name</TableHeaderColumn>
-      <TableHeaderColumn dataField='app'  >Sender id</TableHeaderColumn>
-      <TableHeaderColumn dataField='registrationTime'>Registration time</TableHeaderColumn>
-      
- 
   
   </BootstrapTable>,
      

@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 import PageTitle from "../components/common/PageTitle";
-
+import NavbarSearch from '../components/layout/MainNavbar/NavbarSearch.js';
 
 
 
@@ -15,7 +15,7 @@ class  Notifications extends Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:7778/v1/application',{ 
+    fetch('http://localhost:7778/v1/notification',{ 
       method: 'GET',
       headers: {  
       'Authorization': 'Bearer f0e739a8-5a7d-4d5b-8775-4dc20db592f3',
@@ -37,10 +37,14 @@ class  Notifications extends Component {
   getNotificationData = (data) => 
   ( data ||[]).map((list) => ({ 
     id: list._id, 
-    app: list.name,
-    senderId: list.senderId,
-    registrationTime: list.createdAt,
-     
+    app: list.sender.title,
+    recipient: list.recipients,
+    type: list.type,
+    message: list.message,
+    title: list.sender.title,
+    status: list.status,
+    time: list.createdAt
+    
   }))
    
 
@@ -54,7 +58,10 @@ class  Notifications extends Component {
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="All Applications" subtitle="SMS SERVICE" className="text-sm-left" />
+      <PageTitle sm="4" title="All Courses" subtitle="BCC CLASS" className="text-sm-left" />
+      <Col lg="4" md="6" sm="12" className="mb-4">
+         <NavbarSearch/>
+      </Col>
     </Row>
 
     {/* Default Light Table */}
@@ -62,18 +69,19 @@ class  Notifications extends Component {
       <Col>
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6 className="m-0">Applications</h6>
+            <h6 className="m-0">All Courses</h6>
           </CardHeader>
           
           <CardBody className="p-0 pb-3">
  
            
-          <BootstrapTable  data={this.state.notifications} key={this.state.notifications._id} isKey={true} pagination options ={{sizePerPage: 5}}>
-      <TableHeaderColumn isKey dataField='id' hidden={true} >Application ID</TableHeaderColumn>
+          <BootstrapTable   data={this.state.notifications} pagination options ={{sizePerPage: 5}}>
+      <TableHeaderColumn isKey dataField='id' hidden={true} >Notification ID</TableHeaderColumn>
+      <TableHeaderColumn dataField='recipient' width='13%' >Recipient</TableHeaderColumn>
       <TableHeaderColumn dataField='app'>App</TableHeaderColumn>
-      <TableHeaderColumn dataField='senderId' >Sender id</TableHeaderColumn>
-      <TableHeaderColumn dataField='registrationTime'>Registration Time</TableHeaderColumn>
-
+      <TableHeaderColumn dataField='message' width='22%'>Message</TableHeaderColumn>
+      <TableHeaderColumn dataField='status' >Status</TableHeaderColumn>
+      <TableHeaderColumn dataField='time'  >Time</TableHeaderColumn>
   
   </BootstrapTable>,
      
@@ -91,6 +99,7 @@ class  Notifications extends Component {
     </Row>
   
 
+   
   </Container>
  )
 }

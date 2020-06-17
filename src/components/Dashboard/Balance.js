@@ -65,7 +65,7 @@ Dashboard.defaultProps  = {
   smallStats: [
     
     {
-      label: "REMAINING BALANCE",
+      label: "Courses",
       value: !Dashboard.notifications ? 0 : Dashboard.notifications.length ,
       percentage: "78.4",
       increase: true,

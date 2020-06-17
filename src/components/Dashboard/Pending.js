@@ -67,7 +67,7 @@ Dashboard.defaultProps  = {
   smallStats: [
     
     {
-        label: "PENDING NOTIFICATION",
+        label: "Users",
         value: "29",
         percentage: "2.71%",
         increase: false,

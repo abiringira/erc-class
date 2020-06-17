@@ -35,7 +35,7 @@ class SidebarMainNavbar extends React.Component {
                 id="main-logo"
                 // className="d-inline-block align-top mr-1"
                 style={{ maxWidth: "210px" }}
-                src={require("../../../images/avatars/logoerc.png")}
+                src={require("../../../images/avatars/erc.jpg")}
                 alt="Notification Dashboard"
               />
               {/* {!hideLogoText && (
