@@ -65,7 +65,7 @@ Dashboard.defaultProps  = {
   smallStats: [
     
     {
-        label: "FAILED NOTIFICATION",
+        label: "Exams",
         value: !Dashboard.notifications ? 0 : Dashboard.notifications.length ,
         percentage: "3.8%",
         increase: false,
