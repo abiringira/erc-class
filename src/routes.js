@@ -12,6 +12,7 @@ import Errors from "./views/Errors";
 import ResendNotification from "./views/ResendNotification";
 import Courses from "./views/Courses";
 import login from "./views/Login";
+import CreateNewCourse from "./views/createNewCourse"
 
 export default [
   {
@@ -49,6 +50,11 @@ export default [
     path: "/resend-notification",
     layout: DefaultLayout,
     component: ResendNotification
+  },
+  {
+    path: "/new-course",
+    layout: DefaultLayout,
+    component: CreateNewCourse
   },
   {
     path: "/courses",
