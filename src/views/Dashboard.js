@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
@@ -9,12 +9,14 @@ import Sent from "../components/Dashboard/Sent";
 import Failed from "../components/Dashboard/Failed";
 import Balance from "../components/Dashboard/Balance"; 
 
-const Dashboard = ({ smallStats }) => { 
+class  Dashboard extends Component  { 
+
   
-   
-  
+  render() { 
 
   return (
+   <div> {this.props.token} 
+  
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -50,13 +52,16 @@ const Dashboard = ({ smallStats }) => {
     
     </Row>
   </Container>
+  </div>
 )
+    }
       };
 
 Dashboard.propTypes = {
   /**
    * The small stats dataset.
    */
+  
   smallStats: PropTypes.array
 };
 

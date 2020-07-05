@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "../shards-dashboard/styles/index.css";
 import Dashboard from "./Dashboard";
 import axios from "axios";
-import { Redirect } from 'react-router-dom';
+import Api from "../Api";
+
+import { Redirect, Link } from "react-router-dom";
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,8 @@ class LoginPage extends Component {
       phone: null,
       name: null,
       passwordCreation: null,
-      redirect: false
+      redirect: false,
+      token: null
     };
   }
 
@@ -31,34 +34,45 @@ class LoginPage extends Component {
   };
 
   postLogin = async e => {
-     
-     e.preventDefault();
+    e.preventDefault();
     console.log("Success:", this.state.login);
-
-    try {
-      const res = await axios({
-        method: "POST",
-        url: "https://www.smart-investment.club/ercapi/api/auth/signin",
-        headers: {
-          "API-VERSION": 1.0,
-          "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-          "Content-Type": "application/json"
-        },
-        data: {
-          login: this.state.login,
-          password: this.state.password
-        }
+     try {
+       await Api.login({
+        login: this.state.login,
+        password: this.state.password
       });
-      if (res.status === 200) {
-        console.log(res.status);
-        console.log(this.state.redirect);
-      // return(<div> {this.getDashboard()}</div>) ;
+     
       this.setRedirect();
-      }
-      return <LoginPage />;
-    } catch (error) {
+
+       
+     } catch (error) {
       console.log(error.message);
-    }
+       
+     }
+    // try {
+    //   const res = await axios({
+    //     method: "POST",
+    //     url: "https://www.smart-investment.club/ercapi/api/auth/signin",
+    //     headers: {
+    //       "API-VERSION": 1.0,
+    //       "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
+    //       "Content-Type": "application/json"
+    //     },
+    //     data: {
+    //       login: this.state.login,
+    //       password: this.state.password
+    //     }
+    //   });
+    //   if (res.status === 200) {
+    //     console.log(res.status);
+    //   this.setRedirect();
+    //   this.setState({token : res.accessToken})
+
+    //   }
+    //   return <LoginPage />;
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
 
   postSignUp = async e => {
@@ -83,7 +97,7 @@ class LoginPage extends Component {
       });
       if (res.status === 200) {
         console.log(res.status);
-        return <Dashboard />;
+        return <Dashboard token={this.state.token} />;
       }
       return <LoginPage />;
     } catch (error) {
@@ -97,8 +111,8 @@ class LoginPage extends Component {
         <div className="body1">
           <div className="App-login1">
             <div className="container1" id="container1">
-              <div  className="form-container1 sign-in-container1">
-              {this.getDashboard()}
+              <div className="form-container1 sign-in-container1">
+                {this.getDashboard()}
                 <form className="form1" onSubmit={this.postLogin}>
                   <div className="social-container1">
                     <img
