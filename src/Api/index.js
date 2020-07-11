@@ -10,5 +10,7 @@ const methods = {
 
 export default {
     login: (data) => request(methods.post, '/auth/signin',data),
-    courses : () => request(methods.get,'/courses',null,true)
+    courses : () => request(methods.get,'/courses',null,true),
+    participants : () => request(methods.get,'/courses/1/participants',null,true),
+    users : () => request(methods.get,'/users',null,true)
 };

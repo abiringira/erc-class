@@ -37,19 +37,7 @@ class courses extends Component {
   };
 
  async componentDidMount() {
-    // fetch("https://www.smart-investment.club/ercapi/api/courses", {
-    //   method: "GET",
-    //   headers: {
-    //     "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-    //      //'Authorization': `Bearer${token}`
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.setState({ courses: this.getNotificationData(data) });
-  
-
-    //   });
+    
 
     try {
      const data = await Api.courses();
