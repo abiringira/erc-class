@@ -35,71 +35,29 @@ class LoginPage extends Component {
 
   postLogin = async e => {
     e.preventDefault();
-    console.log("Success:", this.state.login);
-     try {
-       await Api.login({
+
+    try {
+      await Api.login({
         login: this.state.login,
         password: this.state.password
       });
-     
+
       this.setRedirect();
-
-       
-     } catch (error) {
+    } catch (error) {
       console.log(error.message);
-       
-     }
-    // try {
-    //   const res = await axios({
-    //     method: "POST",
-    //     url: "https://www.smart-investment.club/ercapi/api/auth/signin",
-    //     headers: {
-    //       "API-VERSION": 1.0,
-    //       "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-    //       "Content-Type": "application/json"
-    //     },
-    //     data: {
-    //       login: this.state.login,
-    //       password: this.state.password
-    //     }
-    //   });
-    //   if (res.status === 200) {
-    //     console.log(res.status);
-    //   this.setRedirect();
-    //   this.setState({token : res.accessToken})
-
-    //   }
-    //   return <LoginPage />;
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+    }
   };
 
   postSignUp = async e => {
     e.preventDefault();
-    console.log("Success:", this.state.login);
 
     try {
-      const res = await axios({
-        method: "POST",
-        url: "https://www.smart-investment.club/ercapi/api/auth/signup",
-        headers: {
-          "API-VERSION": 1.0,
-          "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-          "Content-Type": "application/json"
-        },
-        data: {
-          email: this.state.email,
-          mobile: this.state.phone,
-          name: this.state.name,
-          password: this.state.passwordCreation
-        }
+       await Api.signup({
+        email: this.state.email,
+        mobile: this.state.phone,
+        name: this.state.name,
+        password: this.state.passwordCreation
       });
-      if (res.status === 200) {
-        console.log(res.status);
-        return <Dashboard token={this.state.token} />;
-      }
-      return <LoginPage />;
     } catch (error) {
       console.log(error.message);
     }
