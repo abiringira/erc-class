@@ -13,6 +13,7 @@ import ResendNotification from "./views/ResendNotification";
 import Courses from "./views/Courses";
 import login from "./views/Login";
 import CreateNewCourse from "./views/createNewCourse"
+import Signup from "./views/Signup";
 
 export default [
   {
@@ -61,5 +62,10 @@ export default [
     layout: DefaultLayout,
     component: Courses
   },
+  {
+    path : "/signup",
+    layout: DefaultLayout,
+    component: Signup
+  }
   
 ];

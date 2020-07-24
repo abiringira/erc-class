@@ -23,12 +23,14 @@ class App extends Component {
                   path={route.path}
                   exact={route.exact}
                   component={withTracker(props => {
-                    if (route.path === "/login") {
+                    if (route.path === "/login" || route.path === "/signup") {
                       return <route.component {...props} />;
                     } else if (route.path.startsWith("/exam")) {
-                     return <SecondLayout>
-                        <route.component {...props} />
-                      </SecondLayout>;
+                      return (
+                        <SecondLayout>
+                          <route.component {...props} />
+                        </SecondLayout>
+                      );
                     } else {
                       return (
                         <route.layout {...props}>
