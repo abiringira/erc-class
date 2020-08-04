@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Col } from "shards-react";
-import SidebarMainNavbar from "./SidebarMainNavbar";
+import SidebarMainNavbarUser from "./SidebarMainNavbarUser";
 import SidebarSearch from "./SidebarSearch";
 import SidebarNavItems from "./SidebarNavItems";
 import { Store } from "../../../flux";
@@ -51,7 +51,7 @@ class MainSidebarUser extends React.Component {
         lg={{ size: 2 }}
         md={{ size: 3 }}
       >
-        <SidebarMainNavbar hideLogoText={this.props.hideLogoText} />
+        <SidebarMainNavbarUser hideLogoText={this.props.hideLogoText} />
         
       </Col>
     );

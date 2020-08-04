@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import { DefaultLayout,SecondLayout } from "./layouts";
 
 // Route Views
 import Dashboard from "./views/Dashboard";
@@ -14,6 +14,7 @@ import Courses from "./views/Courses";
 import login from "./views/Login";
 import CreateNewCourse from "./views/createNewCourse"
 import Signup from "./views/Signup";
+import Exam from "./views/Exam";
 
 export default [
   {
@@ -66,6 +67,11 @@ export default [
     path : "/signup",
     layout: DefaultLayout,
     component: Signup
+  },
+  {
+    path : "/exam",
+    layout: SecondLayout,
+    component: Exam
   }
   
 ];

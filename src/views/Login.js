@@ -136,7 +136,6 @@ class LoginPage extends Component {
                   <h1 >New User</h1>
                   <br></br>
                   
-                  
                     <a  href="/signup" className="button-signup">Create Account </a>
                   
                 

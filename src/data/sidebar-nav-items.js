@@ -34,6 +34,7 @@ export default function() {
       htmlBefore: '<i class="material-icons">rowing</i>',
       to: "/login",
     },
+  
     
   ];
 }
