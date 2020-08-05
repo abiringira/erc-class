@@ -1,48 +1,55 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody ,Button } from "shards-react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  Button
+} from "shards-react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 import NavbarSearch from "../components/layout/MainNavbar/NavbarSearch.js";
+import Api from "../Api"
 
 class courses extends Component {
-  state = {
-    courses: [],
-    redirect : false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      courses: [],
+      redirect: false
+    };
+  }
 
   setRedirect = () => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
 
   getNewCourse = () => {
-    console.log("dfghsdjkghsg")
+    console.log("dfghsdjkghsg");
     if (this.state.redirect) {
-      return <Redirect to='/new-course' />
+      return <Redirect to="/new-course" />;
     }
- 
-    }
+  };
 
-  componentDidMount() {
-    fetch("https://www.smart-investment.club/ercapi/api/courses", {
-      method: "GET",
-      headers: {
-        "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTkyNzQ2ODc4LCJleHAiOjE1OTI4MzMyNzh9.gWn90VVPV_tz_v0QQRPAVeNwZf1cB9xoPZrttyBOJH7n6tSW0Ik5S9_rlVYoEqemgcAiyF6qEaJVFgqHdJYPJA"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ courses: this.getNotificationData(data) });
-        console.log(this.state.courses);
-      });
+ async componentDidMount() {
+    
+
+    try {
+     const data = await Api.courses();
+      this.setState({ courses: this.getNotificationData(data) });
+      
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   getNotificationData = data =>
     (data.content || []).map(list => ({
-     
       creationDateTime: list.creationDateTime,
       description: list.description,
       id: list.id,
@@ -51,6 +58,7 @@ class courses extends Component {
     }));
 
   render() {
+    
     return (
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
@@ -64,8 +72,8 @@ class courses extends Component {
           <Col lg="4" md="6" sm="9" className="col-lg mb-4">
             <NavbarSearch />
             <div>
-        {this.getNewCourse()}
-            <Button onClick={this.setRedirect} > Add New Course</Button>
+              {this.getNewCourse()}
+              <Button onClick={this.setRedirect}> Add New Course</Button>
             </div>
           </Col>
         </Row>

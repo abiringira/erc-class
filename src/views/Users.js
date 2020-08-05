@@ -1,99 +1,114 @@
 import React,{Component} from "react";
+import { Redirect } from 'react-router-dom';
+
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
+
 import PageTitle from "../components/common/PageTitle";
+import Editor from "../components/send-new-notification/Editor";
+import Api from "../Api";
 
 
+class SendNewNotification extends Component   {
 
-
-class  Notifications extends Component {
-
+  
   state = {
-    notifications: []
+    users: [],
+    redirect : false
+  };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
   }
 
+  getNewCourse = () => {
+    console.log("dfghsdjkghsg")
+    if (this.state.redirect) {
+      return <Redirect to='/new-course' />
+    }
+ 
+    }
 
-  componentDidMount() {
-    fetch('http://localhost:7778/v1/application',{ 
-      method: 'GET',
-      headers: {  
-      'Authorization': 'Bearer f0e739a8-5a7d-4d5b-8775-4dc20db592f3',
-      //  IKOFI KEY : '76c274f6-948b-4b7a-b263-60114b227df4'
-      // IB KEY : '1168367d-473c-46b3-b975-e3685ce40a34'
-      //IGURIZE KEY: 'f0e739a8-5a7d-4d5b-8775-4dc20db592f3'
-    }})
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ notifications:  this.getNotificationData(data) })
-      console.log(this.state.notifications);
-     
-    }) 
-  
+  async componentDidMount() {
+    try {
+      const data = await Api.users();
+      console.log(data)
+      this.setState({users : this.getNotificationData(data)})
+      
+    } catch (error) {
+      console.log(error.message);
+      
+    }
   }
-   
+
   
 
-  getNotificationData = (data) => 
-  ( data ||[]).map((list) => ({ 
-    id: list._id, 
-    app: list.name,
-    senderId: list.senderId,
-    registrationTime: list.createdAt,
+  getNotificationData = data =>
+    (data.content || []).map(list => ({
      
-  }))
+      code: list.code,
+      email: list.email,
+      mobile: list.mobile,
+      name: list.name
+    }));
    
+
+  
+ 
+
+
 
 
   render() {
 
-  return(
+    return(
 
- 
+  
 
-  <Container fluid className="main-content-container px-4">
+  <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="All Users" subtitle="BCC CLASS" className="text-sm-left" />
+      <PageTitle sm="4" title="All users" subtitle="BCC CLASS" className="text-sm-left" />
     </Row>
-
-    {/* Default Light Table */}
     <Row>
-      <Col>
-        <Card small className="mb-4">
-          <CardHeader className="border-bottom">
-            <h6 className="m-0">Users</h6>
-          </CardHeader>
-          
-          <CardBody className="p-0 pb-3">
- 
-           
-          <BootstrapTable  data={this.state.notifications} key={this.state.notifications._id} isKey={true} pagination options ={{sizePerPage: 5}}>
-      <TableHeaderColumn isKey dataField='id' hidden={true} >Application ID</TableHeaderColumn>
-      <TableHeaderColumn dataField='app'>App</TableHeaderColumn>
-      <TableHeaderColumn dataField='senderId' >Sender id</TableHeaderColumn>
-      <TableHeaderColumn dataField='registrationTime'>Registration Time</TableHeaderColumn>
+          <Col>
+            <Card small className="mb-4">
+              <CardHeader className="border-bottom">
+                <h6 className="m-0">All users</h6>
+              </CardHeader>
 
-  
-  </BootstrapTable>,
-     
-          
-          </CardBody>
-          
-             
-          
-        </Card>
-        
-  
-
-
-      </Col>
-    </Row>
-  
-
+              <CardBody className="p-0 pb-3">
+                <BootstrapTable
+                  data={this.state.users}
+                  pagination
+                  options={{ sizePerPage: 5 }}
+                >
+                  <TableHeaderColumn
+                    isKey
+                    dataField="code"
+                    // hidden={true}
+                  >
+                    Code
+                  </TableHeaderColumn>
+                  <TableHeaderColumn dataField="email" width="13%">
+                    Email
+                  </TableHeaderColumn>
+                  <TableHeaderColumn dataField="mobile">Mobile</TableHeaderColumn>
+                  <TableHeaderColumn dataField="name">name</TableHeaderColumn>
+                 
+                </BootstrapTable>
+                ,
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
   </Container>
- )
+    )
 }
- } ;
 
-export default Notifications;
+};
+
+export default SendNewNotification;

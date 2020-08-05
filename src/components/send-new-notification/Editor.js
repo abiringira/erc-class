@@ -21,7 +21,7 @@ class Editor extends Component {
       description: null,
       code: null
     };
-
+    
     this.quillRef = null;
     this.quillEditor = null;
   }

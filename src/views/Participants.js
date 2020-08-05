@@ -7,6 +7,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/send-new-notification/Editor";
+import Api from "../Api";
 
 
 class SendNewNotification extends Component   {
@@ -31,19 +32,16 @@ class SendNewNotification extends Component   {
  
     }
 
-  componentDidMount() {
-    fetch("https://www.smart-investment.club/ercapi/api/courses/"+ 4  +"/participants", {
-      method: "GET",
-      headers: {
-        "Application-key": "a6cb5c9ce88b59ee360587f0459bcb37fe8895c9",
-        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTkyNzQ2ODc4LCJleHAiOjE1OTI4MzMyNzh9.gWn90VVPV_tz_v0QQRPAVeNwZf1cB9xoPZrttyBOJH7n6tSW0Ik5S9_rlVYoEqemgcAiyF6qEaJVFgqHdJYPJA"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ participants: this.getNotificationData(data) });
-        console.log(this.state.participants);
-      });
+  async componentDidMount() {
+    try {
+      const data = await Api.participants();
+      console.log(data)
+      this.setState({participants : this.getNotificationData(data)})
+      
+    } catch (error) {
+      console.log(error.message);
+      
+    }
   }
 
   

@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Col } from "shards-react";
-import SidebarMainNavbar from "./SidebarMainNavbar";
+import SidebarMainNavbarUser from "./SidebarMainNavbarUser";
 import SidebarSearch from "./SidebarSearch";
 import SidebarNavItems from "./SidebarNavItems";
 import { Store } from "../../../flux";
 
-class MainSidebar extends React.Component {
+class MainSidebarUser extends React.Component {
   constructor(props) {
     super(props);
 
@@ -51,23 +51,22 @@ class MainSidebar extends React.Component {
         lg={{ size: 2 }}
         md={{ size: 3 }}
       >
-        <SidebarMainNavbar hideLogoText={this.props.hideLogoText} />
-        <SidebarSearch />
-        <SidebarNavItems />
+        <SidebarMainNavbarUser hideLogoText={this.props.hideLogoText} />
+        
       </Col>
     );
   }
 }
 
-MainSidebar.propTypes = {
+MainSidebarUser.propTypes = {
   /**
    * Whether to hide the logo text, or not.
    */
   hideLogoText: PropTypes.bool
 };
 
-MainSidebar.defaultProps = {
+MainSidebarUser.defaultProps = {
   hideLogoText: false
 };
 
-export default MainSidebar;
+export default MainSidebarUser;
